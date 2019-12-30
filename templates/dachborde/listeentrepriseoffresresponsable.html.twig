@@ -1,0 +1,77 @@
+{% extends 'dachborde/index.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Liste Entreprise avec leur offres<small></small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+<div class="row" stype="display: flex; flex-wrap: wrap;"> 
+   
+    {% for RE in Responsableentreprise  %}
+<div class="col-md-4 col-sm-4" >
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {{RE.nomEntreprise}}
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#{{RE.id}}a" data-toggle="tab">Entreprise</a>
+                </li>
+                <li class=""><a href="#{{RE.id}}z" data-toggle="tab">Responsable</a>
+                </li>
+                <li class=""><a href="#{{RE.id}}e" data-toggle="tab">offres</a>
+                </li> 
+            </ul> 
+
+            <div class="tab-content">
+                <div class="tab-pane fade" id="{{RE.id}}a">
+                    <h4><small>nom Entreprise :</small>{{RE.nomEntreprise}}</h4>
+                    <small>domaine Entreprise :</small>{{RE.domaineEntreprise}}
+                    <p><small>description Entreprise :</small>{{RE.descriptionEntreprise}}</p>
+                </div>
+                <div class="tab-pane fade" id="{{RE.id}}z">
+                    {%for R in user%}
+                        {%if(R.id == RE.idUser )%}
+                            <h4><small>nom :</small>{{R.nom}}</h4>
+                            <h4><small>prenom :</small>{{R.prenom}}</h4>
+                            <h4><small>adresseEmail :</small>{{R.adresseEmail}}</h4>
+                            {%for tel in R.getTeles() %}
+                            <h4><small>tel :</small>{{tel.tele}}</h4>
+                            {%endfor%}
+                            
+                        {%endif%}
+                    {%endfor%}
+                </div>
+                <div class="tab-pane fade" id="{{RE.id}}e"> 
+                    {%for OF in RE.getOffres()  %}  
+                            <h4><small>titre :</small>{{OF.titre}}</h4>
+                            <h4><small>type :</small>{{OF.type}}</h4> 
+                            <p><small>description :</small>{{OF.description}}</p>  
+                            <a href="{{path('PostulerEtOf',{'id':OF.id})}}">
+                                <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-heart"></i>
+                                    Postuler
+                                </button>
+                            </a>  
+                            <hr><hr>  
+                        
+                    {%endfor%}
+                    </div> 
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%} 
+ 
+</div>
+{% endblock %}
+

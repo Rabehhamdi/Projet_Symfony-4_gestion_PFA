@@ -1,0 +1,111 @@
+{% extends 'baseHeaderFooter/header.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div class="list-catag">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 column-left">
+                <div class="column-left__item">
+                    <h1 class="column-left__title">Categories</h1>
+                    <div class="select list-selector"><a class="column-left__button-drop" href="#list-catagories"
+                            data-toggle="collapse" id="btn-list-catagories"><span class="column-left__button-drop__text"
+                                id="select-text">Categories</span><span
+                                class="glyph-icon flaticon-arrows-2 column-left__icon"></span></a>
+                        <div class="list-catagories list-catagories" id="list-catagories">
+                            <ul class="list-catagories__list">Categorieoffre
+                                <li class="list-catagories__item"><a class="list-catagories__link active">all</a>
+                                </li>
+                                {% for cat in Categorieoffre %}
+                                <li class="list-catagories__item"><a class="list-catagories__link ">
+                                    {{cat.titre}}
+                                </a>
+                                </li>
+                                {%endfor%}
+                                 
+                            </ul><a class="column-left__link" href="#">see more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 column-right">
+                <div class="row courses__list ">
+
+                    {%for offre in Offreentreprise %} 
+
+                    <div class=" col-lg-4 col-md-6 col-sm-6 undefined courses__item">
+                        <div class="courses__wapper">
+                            <div class="col-equal courses__top">
+                                <div class="courses__top__wapper"><img class="courses__top__image" src="assets/img/courses-image/0.jpg"
+                                        alt=""></div>
+                                <div class="courses__top__bundle"></div>
+                                <div class="courses__top__bt-seller"></div>
+                                <div class="courses__hover">
+                                    <div class="courses__hover-content"><span class="courses__hover-content__item"><span
+                                                class="glyph-icon flaticon-shapes courses__hover-content__icon"></span></span><span
+                                            class="courses__hover-content__item"><span
+                                                class="glyph-icon flaticon-interface courses__hover-content__icon"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-equal courses__content"><a class="courses__content__title" href="#">
+                                    {{offre.titre}}
+                                </a><br>
+                    
+                    
+                                <div class="courses__content__author"><a class="courses__col-left" href="#">
+                                        <span class="courses__content__author-name">
+                    
+                                            {{offre.description}}
+                                        </span></a>
+                    
+                                </div>
+                                <div class="courses__content__info">
+                                    <div class="courses__col-left">
+                                        <div class="col-left__item"><span class="courses__content__icon"><span
+                                                    class="glyph-icon flaticon-shapes icon-custom"></span></span><span
+                                                class="courses__content__number">{{offre.categorie.titre}}</span></div>
+                                        <div class="col-left__item"><span class="courses__content__icon"><span
+                                                    class="glyph-icon flaticon-profile-1 icon-custom">{{offre.responsable.nomEntreprise}}<br></span></span>
+                    
+                                        </div>
+                                    </div>
+                                    <div class="courses__col-right courses__content__price">{{offre.postulers|length}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+                <div class="pagination-wrapper">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination__list">
+                            <li class="page-item pagination__item"><a class="page-link pagination__link "
+                                    href="#">prev</a></li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link active"
+                                    href="#">1</a></li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link " href="#">2</a>
+                            </li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link " href="#">3</a>
+                            </li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link "
+                                    href="#">...</a></li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link "
+                                    href="#">next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <nav class="breadcrumb-wapper">
+            <ul class="breadcrumb">
+                <li class="breadcrumb__item"><a class="breadcrumb__link" href="index.html">home</a></li>
+                <li class="breadcrumb__item active"><a class="breadcrumb__link active" href="#">categories</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+{% endblock %}

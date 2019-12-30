@@ -1,0 +1,50 @@
+{% extends 'baseHeaderFooter/header.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div class="bundle-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 sidebar-left">
+                <div class="list-link" id="menu-left">
+                    <ul class="list-link__list">
+                        
+                    </ul>
+                    <div class="title-list list-link__title">LISTE DES CATEGORIES</div> 
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="bundle-header__about">
+                    <h1 class="bundle-header__title">LISTE DES CATEGORIES</h1>
+                     
+                </div>
+                
+                    <div class="bundle" id="how-it-works">
+                        <div class="bundle__title"></div>
+                        <div class="bundle__content">
+                            <div class="list_works">
+
+                                {% for cat in Categorieoffre %}
+                                <div class="list_works__item">
+                                    <div class="list_works__wapper"><img class="list_works__image"
+                                            src="assets/img/course-single/Icon-how-it-works-1.png" alt="How to works">
+                                    </div>
+                                    <div class="list_works__content">
+                                        <div class="list_works__title">{{cat.titre}}</div>
+                                        <div class="list_works__subs">{{cat.description}}</div>
+                                    </div>
+                                </div> 
+                                {%endfor%}
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div></div>
+                     
+                 
+{% endblock %}

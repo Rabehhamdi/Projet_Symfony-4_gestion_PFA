@@ -1,0 +1,60 @@
+{% extends 'dachborde/index.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Liste Offres Postuler <small> </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Liste Offres Postuler
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>titre</th>
+                                        <th>type</th>
+                                        <th>description</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {%for o in Postuler%} 
+                                    <tr class="gradeX">
+                                        <td>{{o.offre.titre}}</td>
+                                        <td> {{o.offre.type}}</td>
+                                        <td>{{o.offre.description}}</td> 
+                                        <td>
+                                            <a href="{{path('supprimerPostulerPAREtudant',{'id':o.id})}}">
+                                                <button type="button" class="btn btn-danger btn-circle"> Supprimer</i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {%endfor%} 
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

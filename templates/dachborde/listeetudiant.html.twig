@@ -1,0 +1,87 @@
+{% extends 'dachborde/index.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Liste Etudiant  <small> </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Etudiant
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>cin</th>
+                                        <th>nom</th>
+                                        <th>prenom </th>
+                                        <th>dateNaissance</th>
+                                        <th>adresseEmail</th>
+                                        <th>teles </th>
+                                        <th>Password</th>
+                                        <th>Modification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {%for Etudiant in listeEtudiant%}
+                                    {%if(Etudiant.roles[0] == "ROLE_ETUDIANT" )%}
+                                    <tr class="gradeX">
+                                        <td>{{Etudiant.id}}</td>
+                                        <td>{{Etudiant.cin}}</td>
+                                        <td>{{Etudiant.nom}}</td>
+                                        <td>{{Etudiant.prenom}}</td>
+                                        <td>{{Etudiant.dateNaissance|date('Y-m-d')}}</td>
+                                        <td>{{Etudiant.adresseEmail}}</td>
+                                        
+                                        <td>{% for tel in Etudiant.teles  %}{{tel.tele}}<br>{% endfor %}</td>
+                                        
+                                        <td>{{Etudiant.plainPassword}}</td>
+                                        <td>{% if( Etudiant.activer == "1" ) %}
+                                            <a href="{{path('DeActiverEtudiant',{'id':Etudiant.id})}}"> 
+                                                <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
+                                                    Activer
+                                                </button>
+                                            </a>
+                                            {%else%}
+                                            <a href="{{path('ActiverEtudiant',{'id':Etudiant.id})}}">
+                                                <button type="button" class="btn btn-warning btn-circle"><i class="fa fa-money"></i>Non Activer
+                                                </button>
+                                            </a>
+                                            {% endif %}
+                                            <br> 
+                                            <a href="{{path('supprimerEtudiant',{'id':Etudiant.id})}}">
+                                            <button type="button" class="btn btn-danger btn-circle"><i class="fa fa-heart">Supprimer</i>
+                                            </button>
+                                            </a>
+                                
+                                        </td>
+                                    </tr>
+                                    {%endif%}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div> 
+    </div> 
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'dachborde/index.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Entreprises <small> </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+{{dump(Entreprise)}}
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Entreprises
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>nom de Entreprise</th>
+                                        <th>domaine Entreprise</th>
+                                        <th>description Entreprise</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="gradeX"> 
+                                        {% for EN in Entreprise %}
+                                        <td>{{EN.nomEntreprise}}</th>
+                                        <td>{{EN.domaineEntreprise}}</th>
+                                        <td>{{EN.descriptionEntreprise}}</th>
+                                        {%endfor%}
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

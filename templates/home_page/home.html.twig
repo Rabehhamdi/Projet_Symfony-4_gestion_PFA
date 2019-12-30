@@ -1,0 +1,247 @@
+ 
+		{% extends 'baseHeaderFooter/header.html.twig' %}
+
+		{% block title %}Hello Home{% endblock %}
+		
+		{% block body %}   
+		<div class="design-sprint">
+			<div class="container design-sprint__list">
+				<div class="row design-sprint__content">
+					<div class="col-lg-4 col-md-4 col-sm-4 design-sprint__item">
+						<h1 class="design-sprint__item__title">design sprint foundations</h1>
+						<p class="design-sprint__item__content">What do you want to learn today? What's your dream job? Discover
+							the program that's right for today</p><a class="btn button-default design-sprint__item__button"
+							href="#">enroll now</a>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 design-sprint__item-image">
+						<div class="design-sprint__wapper"><img class="design-sprint__wapper__image"
+								src="assets/img/home/01.png" alt="Product management"></div>
+						<div class="design-sprint__contents"><a class="design-sprint__contents__title" href="#">product
+								management</a><a class="design-sprint__contents__link" href="#">enroll now</a></div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 design-sprint__item-image">
+						<div class="design-sprint__wapper"><img class="design-sprint__wapper__image"
+								src="assets/img/home/02.png" alt="Deep learning data analyst"></div>
+						<div class="design-sprint__contents"><a class="design-sprint__contents__title" href="#">deep learning
+								data analyst</a><a class="design-sprint__contents__link" href="#">enroll now</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="list-icons">
+			<div class="container">
+				<div class="row list-icons__list">
+					{%for enter in Responsableentreprise %}
+					<div class="list-icons__item">
+						<a class="list-icons__link" href="#">
+							<img class="list-icons__image" src="assets/img/home/01image.png" alt="home/01image.png">
+							{{enter.nomEntreprise}}
+						</a>
+						
+					</div>
+					{%endfor%}
+					 
+				</div>
+			</div>
+		</div>
+		<section class="spy list-course" id="exploer">
+			<div class="container">
+				<div class="list-course__header">
+					<h2 class="list-course__header__title wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.002s">CATEGORIES DES OFFRES</h2>
+					<div class="list-course__view-more"><a class="list-course__header__btn"><span
+								class="list-course__header__text">view more</span></a>
+						<div class="list-course__header__icon list-course-icon-arrow-special"><span
+								class="glyph-icon flaticon-arrows-3 list-course__header__icon-arrow"></span></div>
+					</div>
+				</div>
+				
+				<div class="list-course__gird">
+					<div class="course specializations">
+						<div class="special courses__list ">
+							 {%for cat in Categorieoffre %}
+							 
+							<div class="undefined courses__item">
+								<div class="courses__wapper">
+									<div class="col-equal courses__top">
+										<div class="courses__top__wapper"><img class="courses__top__image"
+												src="assets/img/courses-image/1.jpg" alt=""></div>
+										  
+										<div class="courses__top__bt-seller">have {{cat.getOffres()|length}} offres</div>
+										<div class="courses__hover">
+											<div class="courses__hover-content"><span class="courses__hover-content__item"><span
+														class="glyph-icon flaticon-shapes courses__hover-content__icon"></span></span><span
+													class="courses__hover-content__item"><span
+														class="glyph-icon flaticon-interface courses__hover-content__icon"></span></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-equal courses__content"><a class="courses__content__title" href="#">
+										{{cat.titre}}
+									</a>
+										<div class="courses__content__author"><a class="courses__col-left" href="#">
+												<span class="courses__content__author-name">{{cat.description}}</span></a>
+											<div class="courses__col-right">
+												<div class="rating-start" data-rating="5"></div>
+											</div>
+										</div> 
+									</div>
+								</div>
+							</div>
+							{%endfor%} 
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="list-course spy" id="course">
+			<div class="container">
+				<div class="list-course__header">
+					<h2 class="list-course__header__title wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.002s">LISTE DES OFFRES</h2>
+					<div class="list-course__view-more"><a class="list-course__header__btn"><span
+								class="list-course__header__text">view more</span></a>
+						<div class="list-course__header__icon list-course-icon-arrow-course-rate"><span
+								class="glyph-icon flaticon-arrows-3 list-course__header__icon-arrow"></span></div>
+					</div>
+				</div>
+				<div class="list-course__gird">
+					<div class="course rated-courses">
+						<div class="rated-cou courses__list ">
+							{%for offre in Offreentreprise %} 
+							<div class="undefined courses__item">
+								<div class="courses__wapper">
+									<div class="col-equal courses__top">
+										<div class="courses__top__wapper"><img class="courses__top__image"
+												src="assets/img/courses-image/0.jpg" alt=""></div>
+										<div class="courses__top__bundle"></div>
+										<div class="courses__top__bt-seller"></div>
+										<div class="courses__hover">
+											<div class="courses__hover-content"><span class="courses__hover-content__item"><span
+														class="glyph-icon flaticon-shapes courses__hover-content__icon"></span></span><span
+													class="courses__hover-content__item"><span
+														class="glyph-icon flaticon-interface courses__hover-content__icon"></span></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-equal courses__content"><a class="courses__content__title" href="#">
+										{{offre.titre}}  
+									</a><br>
+									
+									
+										<div class="courses__content__author"><a class="courses__col-left" href="#">
+											<span class="courses__content__author-name"> 
+												 
+													{{offre.description}}
+												</span></a>
+											 
+										</div>
+										<div class="courses__content__info">
+											<div class="courses__col-left">
+												<div class="col-left__item"><span class="courses__content__icon"><span
+															class="glyph-icon flaticon-shapes icon-custom"></span></span><span
+														class="courses__content__number">{{offre.categorie.titre}}</span></div>
+												<div class="col-left__item"><span class="courses__content__icon"><span
+															class="glyph-icon flaticon-profile-1 icon-custom">{{offre.responsable.nomEntreprise}}<br></span></span>
+														
+														</div>
+											</div>
+											<div class="courses__col-right courses__content__price">{{offre.postulers|length}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{%endfor%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="best-features event spy" id="partner">
+			<div class="container">
+				<div class="list-course__header">
+					<h2 class="list-course__header__title"> ABOUT</h2>
+				</div>
+				<div class="row">
+					<div class="item">
+						<div class="col-lg-5 col-md-5 item__left wow zoomInLeft"><img class="item__left__image"
+								src="assets/img/home/icon-01.png" alt="">
+							<h3 class="item__left__title">Suitable Course For Your Goal</h3>
+							<p class="item__left__content">
+								These courses are designed exclusively for the rich and want to start a new life.
+								A career that keeps pace with the high salary you deserve, we own the learning paths
+								that are designed specifically for those with professional ambition to create a source of
+								high-minded & skilled workforce.
+							</p>
+						</div>
+						<div class="col-lg-7 col-md-7 item__right">
+							<div class="item__right__image-left"><img class="item__right__image" src="assets/img/home/03.png"
+									alt=""></div>
+							<div class="item__right__image-right"><img class="item__right__image" src="assets/img/home/04.png"
+									alt=""></div>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div> 
+		<div class="list-course spy" id="membership">
+			<div class="container">
+				<div class="list-course__header">
+					<h2 class="list-course__header__title wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.002s"> LISTE DES PROF</h2>
+					<div class="list-course__view-more"><a class="list-course__header__btn"><span
+								class="list-course__header__text">view more</span></a>
+						<div class="list-course__header__icon list-course-icon-arrow-recent-blog"><span
+								class="glyph-icon flaticon-arrows-3 list-course__header__icon-arrow"></span></div>
+					</div>
+				</div>
+				<div class="blog">
+					{%for pro in User%}
+					{% if pro.roles[0]== 'ROLE_PROF' %}
+					<div class="blog-col">
+						<div class="blog-col__item">
+							<div class="blog__item">
+								<div class="blog__item__left"><a class="blog__item__link" href="#"><img
+											class="blog__item__image" src="assets/img/courses-image/1.jpg" alt=""></a></div>
+								<div class="blog__item__right">
+									<div class="blog__item__date"></div><a class="blog__item__title" href="#">
+										{{pro.adresseEmail}}
+									</a>
+									<div class="blog__item__infor"><a class="blog__item__author" href="#">{{pro.nom}} {{pro.prenom}}</a>
+										 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> 
+					{%endif%}
+					{%endfor%}
+				</div>
+			</div>
+		</div> 
+		<div class="testimotials spy" id="elements">
+			<div class="container">
+				<div class="list-course__header">
+					<h2 class="list-course__header__title wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.002s">LISTE DES ETUDIANTS</h2>
+				</div>
+				<div class="row">
+					{% for etu in etudiant %}
+						{%for USR in User%}
+							{% if USR.id== etu.idUser %}
+
+					<div class="testimotials__list">
+						<div class="testimotials__item">
+							<div class="glyph-icon flaticon-weather testimotials__icon"></div>
+							<p class="testimotials__item__content">{{etu.descriptionProfilCv}}</p>
+							<div class="testimotials__item__avatar"><img class="testimotials__item__image"
+									src="assets/img/partner-details/partner-details-2.png" alt="2"></div>
+							<div class="testimotials__item__user">{{USR.nom}} {{USR.prenom}}</div>
+							<div class="testimotials__item__prof">{{USR.adresseEmail}}</div>
+						</div> 
+					</div>
+							{%endif%}
+						{%endfor%}
+					{%endfor%}
+				</div>
+			</div>
+		</div>
+		{% endblock %}

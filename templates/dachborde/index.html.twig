@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from webthemez.com/demo/matrix-free-bootstrap-admin-template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Dec 2019 21:09:11 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrix Free Bootstrap Admin Template</title>
+    <!-- Bootstrap Styles-->
+    <link href="{{ asset('dachborde/assets/css/bootstrap.css')}}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="{{ asset('dachborde/assets/css/font-awesome.css')}}" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="{{ asset('dachborde/assets/js/morris/morris-0.4.3.min.css')}}" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="{{ asset('dachborde/assets/css/custom-styles.css')}}" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Matrix</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                
+                              
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user"> 
+                        <li class="divider"></li> 
+                        <li><a href="{{ path('security_logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a class="active-menu" href="{{ path('dachborde') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('listeProf') }}"><i class="fa fa-qrcode"></i> Prof</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('listeEtudiant') }}"><i class="fa fa-table"></i>Etudiant</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('listeresponsable') }}"><i class="fa fa-edit"></i>Responsable De Entreprise </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('listeCategories') }}"><i class="fa fa-desktop"></i>Categories des Offres</a>
+                    </li>
+
+                    
+                     
+
+                    {% endif %}
+
+
+
+                    {% if is_granted('ROLE_RESPONSABLE_ENTREPRISE') %}
+                    <li>
+                        <a class="active-menu" href="{{ path('responsable_entreprise') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('listeVosOffres') }}"><i class="fa fa-table"></i> liste de Vos Offres </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('listeEtudiantIntereser') }}"><i class="fa fa-table"></i> liste des etudiant Intereser </a>
+                    </li>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_PROF') %}
+                    <li>
+                        <a class="active-menu" href="{{ path('prof') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_ETUDIANT') %}
+                    <li>
+                        <a class="active-menu" href="{{ path('etudiant') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('listeEntrepriseOffresResponsable') }}"><i class="fa fa-bar-chart-o"></i> liste des entreprise avec
+                            leur responsable plus leur offres </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('listeOffresPstuler') }}"><i class="fa fa-desktop"></i> liste des offres que j'aime</a>
+                    </li>
+                    {% endif %}
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                    
+                    
+                    
+
+                    
+                    
+
+
+                     
+                </ul>
+
+            </div>
+
+        </nav>
+
+
+{% block body %}{% endblock %} 
+            <!-- JS Scripts-->
+            <!-- jQuery Js -->
+            <script src="{{ asset('dachborde/assets/js/jquery-1.10.2.js')}}"></script>
+            <!-- Bootstrap Js -->
+            <script src="{{ asset('dachborde/assets/js/bootstrap.min.js')}}"></script>
+            
+            <!-- Metis Menu Js -->
+            <script src="{{ asset('dachborde/assets/js/jquery.metisMenu.js')}}"></script>
+            <!-- Morris Chart Js -->
+            <script src="{{ asset('dachborde/assets/js/morris/raphael-2.1.0.min.js')}}"></script>
+            <script src="{{ asset('dachborde/assets/js/morris/morris.js')}}"></script>
+            
+            
+            <script src="{{ asset('dachborde/assets/js/easypiechart.js')}}"></script>
+            <script src="{{ asset('dachborde/assets/js/easypiechart-data.js')}}"></script>
+            
+            
+            <!-- Custom Js -->
+            <script src="{{ asset('dachborde/assets/js/custom-scripts.js')}}"></script>
+            
+            
+            </body>
+            
+            
+            <!-- Mirrored from webthemez.com/demo/matrix-free-bootstrap-admin-template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Dec 2019 21:09:17 GMT -->
+            
+            </html>

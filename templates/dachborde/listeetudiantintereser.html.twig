@@ -1,0 +1,70 @@
+{% extends 'dachborde/index.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Liste Des Etudiant Intéresse Par vos Offres <small></small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Liste Des Etudiant
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th># </th>
+                                        <th>nom Etudiant </th>
+                                        <th>Prenom Etudiant</th>
+                                        <th>CV Etudiant</th>
+                                        <th>nom offre </th>
+                                        <th>type offre</th>
+                                        <th>categorie offre</th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    {% for off in responsable.offres %}
+                                        {%for int in off.postulers %} 
+                                    <tr class="gradeX">
+                                        <td>{{int.id}}</td>
+                                        {%for etu in us %}
+                                            {% if(etu.id == int.etudiant.idUser ) %}
+                                        <td> {{ etu.nom}}</td>
+                                        <td> {{ etu.prenom}}</td>
+                                        <td>  
+                                            <center> <a href="{{path('cv',{'id' :int.etudiant.id})}}" class="btn btn-primary btn-lg"> CV </a></center>
+                                        </td>
+                                            {%endif%}
+                                        {% endfor %}
+                                        <td>{{int.offre.titre}}</td>
+                                        <td>{{int.offre.type}}</td>
+                                        <td>{{int.offre.categorie.titre}}</td> 
+                                    </tr>
+                                        {% endfor %}
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

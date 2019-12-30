@@ -1,0 +1,118 @@
+{% extends 'dachborde/index.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Liste de vos offres <small>de entreprise </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Advanced Tables
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>titre</th>
+                                        <th>description</th>
+                                        <th>type</th>
+                                        <th>nom Categorie</th>
+                                        <th>action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    {%for k in Offreentreprise %}
+                                    <tr  >
+                                        {%if(k.responsable.idUser == app.user.id)%}
+                                        <td>{{k.id}}</td>
+                                        <td>{{k.titre}}</td>
+                                        <td>{{k.description}}</td>
+                                        <td>{{k.type}}</td>
+                                        <td>{{k.categorie.titre}}</td> 
+                                        <td>
+                                            <a href="{{path('supprimerOffre',{'id':k.id})}}">
+                                                <button type="button" class="btn btn-danger btn-circle"> Supprimer</i>
+                                                </button>
+                                            </a>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{k.id}}">
+                                                Modification
+                                            </button>
+                                            
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="{{k.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Modiffication </h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form role="form" action="{{path('ModificationOffre')}}">
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="disabledSelect">titre</label>
+                                                                    <input class="form-control" value="{{k.titre}}" name="titre" id="disabledInput" type="text">
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="disabledSelect">description</label>
+                                                                    <input class="form-control" value="{{k.description}}" name="description" id="disabledInput" type="text">
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="disabledSelect">type</label>
+                                                                    <input class="form-control" value="{{k.type}}" name="type" id="disabledInput" type="text">
+                                                                </div>
+                                                                <input   value="{{k.id}}" name="id"   type="hidden">
+                                                                <div class="form-group">
+                                                                    <label for="disabledSelect">Categorie</label>
+                                                                    <select id="disabledSelect" name="Categorie" class="form-control">
+                                                                        {%for cat in Categories%}
+                                                                        <option value="{{cat.id}}">{{cat.titre}}</option>
+                                                                        {%endfor%}
+                                                                    </select>
+                                                                </div>
+                                                                 
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        {%endif%}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

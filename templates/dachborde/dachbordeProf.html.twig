@@ -1,0 +1,126 @@
+{% extends 'dachborde/index.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Dashboard <small>Prof</small>
+                </h1>
+            </div>
+        </div>
+        {% if(app.user.image != "")%}
+        <img width="150" height="150" src="/images/{{app.user.image}}">
+        {%endif%}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Votre CV
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>cin</th>
+                                            <th>nom</th>
+                                            <th>prenom </th>
+                                            <th>Commantaire</th>
+                                            <th>CV</th>
+                                            <th>dateNaissance</th>
+                                            <th>adresseEmail</th>
+                                            <th>teles </th> 
+                                            <th>Commantaire</th>
+                                            <th>Motives</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for U in user %}
+                                        {% for Etudiant in etudiant %} 
+                                        {% if(U.id == Etudiant.idUser ) %}
+                                        <tr class="gradeX">
+                                            
+                                            <td>{{Etudiant.id}}</td>
+                                            <td>{{U.cin}}</td>
+                                            <td>{{U.nom}}</td>
+                                            <td>{{U.prenom}}</td>
+                                            <td>
+                                                {%for com in Etudiant.profsignaleretudiants%}
+                                                Commantaire : 
+                                                {{ com.commantaire}}<br>
+                                                {% if(com.positivenegative == 1 ) %}
+                                                Motivé
+                                                {%else%}
+                                                Nom Motivé
+                                                {%endif%}<br>
+                                                ///////////////
+                                                {%endfor%}
+                                            </td>
+                                            <td>
+                                                <a href="{{path('cv',{'id' :Etudiant.id})}}" class="btn btn-primary btn-lg"> CV </a>
+                                            </td> 
+                                            <td>{{U.dateNaissance|date('Y-m-d')}}</td>
+                                            <td>{{U.adresseEmail}}</td>
+                                            
+                                            <td>{% for tel in U.teles  %}{{tel.tele}}<br>{% endfor %}</td>
+                                            <form action="{{path('AjouteCommantaire',{'id' :Etudiant.id})}}" method="POST">
+                                            <td> 
+                                                <div class="form-group">
+                                                    <label>Motives </label>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked="">yes
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="0">no
+                                                        </label>
+                                                    </div> 
+                                                </div>
+                                            </td>
+                                            <td>   
+                                                <div class="input-group-prepend"><span class="input-group-text">Commantaire</span></div>
+                                                    <textarea class="form-control" name="commantaire" aria-label="Biographie">
+                                                         
+                                                    </textarea>
+                                                </div> 
+                                                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                                            </td> 
+                                        </form> 
+
+                                        </tr>
+                                        {%endif%}
+                                        {% endfor %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                             
+                            
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        
+
+
+
+
+    </div>
+</div>
+
+ 
+{% endblock %}

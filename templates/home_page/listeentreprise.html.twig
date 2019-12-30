@@ -1,0 +1,57 @@
+{% extends 'baseHeaderFooter/header.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div class="sc-partner-listing-page">
+    <div class="container">
+        <div class="partner-listing-wrapper">
+             
+            <div class="partner-listing-main">
+                 
+                <div class="partner-listing-main__list">
+                    <div class="university-menu">
+                        <div class="row">
+                         {%for entre in Responsableentreprise %}
+                            <div class="col-md-3 col-sm-4"><a class="university-menu__item" href="#">
+                                    <div class="item-top flex-center"><img class="img-responsive"
+                                            src="assets/img/partner-listing/educef-03.png" alt="educef-03"></div>
+                                    <div class="item-body">
+                                        <h5>{{entre.nomEntreprise}}</h5>
+                                        {{entre.domaineEntreprise}}
+                                    </div>
+                                </a>
+                            </div>
+                          {%endfor%}      
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-wrapper">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination__list">
+                            <li class="page-item pagination__item"><a class="page-link pagination__link "
+                                    href="#">prev</a></li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link active"
+                                    href="#">1</a></li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link " href="#">2</a>
+                            </li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link " href="#">3</a>
+                            </li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link "
+                                    href="#">...</a></li>
+                            <li class="page-item pagination__item"><a class="page-link pagination__link "
+                                    href="#">next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <nav class="breadcrumb-wapper">
+            <ul class="breadcrumb">
+                <li class="breadcrumb__item"><a class="breadcrumb__link" href="index.html">home</a></li>
+                <li class="breadcrumb__item"><a class="breadcrumb__link active" href="#">Partner listing</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}

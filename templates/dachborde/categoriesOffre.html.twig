@@ -1,0 +1,137 @@
+{% extends 'dachborde/index.html.twig' %}
+
+{% block title %}Hello Home{% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Liste de vos Categorie d'offres <small>de entreprise </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter41">
+    Ajoute Categorie d'offre
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter41" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ajoute Categorie d'offre</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> 
+            <form role="form" enctype="multipart/form-data" action="{{path('AjouteCategorie')}}">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="disabledSelect">titre</label>
+                        <input class="form-control" name="titre" id="disabledInput" type="text" placeholder="titre">
+                    </div>
+                    <div class="form-group">
+                        <label for="disabledSelect">description</label>
+                        <input class="form-control" name="description" id="disabledInput" type="text"
+                            placeholder="description">
+                    </div>
+                    <div class="form-group">
+                        <label for="disabledSelect">image</label>
+                        <input type="file" name="image" > 
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Advanced Tables
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Rendering engine</th>
+                                        <th>Browser</th>
+                                        <th> </th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {%for cat in Categories%}
+                                    <tr class="gradeX">
+                                        <td>{{cat.titre}}</td>
+                                        <td>{{cat.description}}</td> 
+                                        <td>
+                                            <a href="{{path('supprimerCategories',{'id':cat.id})}}">
+                                                <button type="button" class="btn btn-danger btn-circle"> Supprimer</i>
+                                                </button>
+                                            </a>
+
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{cat.id}}">
+                                                Modification
+                                            </button>
+                                            
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="{{cat.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Ajoute Categorie d'offre</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form role="form" action="{{path('ModificationCategorie')}}">
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="disabledSelect">titre</label>
+                                                                    <input class="form-control" value="{{cat.titre}}" name="titre" id="disabledInput" type="text" >
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="disabledSelect">description</label>
+                                                                    <input class="form-control" value="{{cat.description}}" name="description" id="disabledInput" type="text">
+                                                                    <input   value="{{cat.id}}" name="id"  type="hidden"  >
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
